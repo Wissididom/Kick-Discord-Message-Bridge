@@ -1,0 +1,24 @@
+{
+  "name": "kick-discord-message-bridge",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "prettier --write .",
+    "check-format": "prettier --check ."
+  },
+  "author": "Wissididom",
+  "license": "MIT",
+  "description": "",
+  "dependencies": {
+    "api-kick": "^1.0.1",
+    "discord.js": "^14.14.1",
+    "dotenv": "^16.4.5",
+    "ws": "^8.16.0"
+  },
+  "devDependencies": {
+    "prettier": "^3.2.5"
+  }
+}
