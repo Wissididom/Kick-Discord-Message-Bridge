@@ -13,7 +13,6 @@
   "license": "MIT",
   "description": "",
   "dependencies": {
-    "api-kick": "^1.0.1",
     "discord.js": "^14.14.1",
     "dotenv": "^16.4.5",
     "ws": "^8.16.0"

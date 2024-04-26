@@ -1,5 +1,4 @@
 import "dotenv/config";
-import * as kickApi from "api-kick";
 import {
   ActionRowBuilder,
   ButtonBuilder,
@@ -15,8 +14,6 @@ import {
 import WebSocket from "ws";
 
 let exponentialBackoff = 0;
-
-const user = await kickApi.getUser(process.env.KICK_CHANNEL_SLUG);
 
 const client = new Client({
   intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages],
@@ -58,7 +55,7 @@ let onmessage = async (event) => {
         event: "pusher:subscribe",
         data: {
           auth: "",
-          channel: `chatrooms.${user.id}.v2`,
+          channel: `chatrooms.${process.env.KICK_CHANNEL_ID}.v2`,
         },
       }),
     );
@@ -67,7 +64,7 @@ let onmessage = async (event) => {
         event: "pusher:subscribe",
         data: {
           auth: "",
-          channel: `channel.${user.id}`,
+          channel: `channel.${process.env.KICK_CHANNEL_ID}`,
         },
       }),
     );
