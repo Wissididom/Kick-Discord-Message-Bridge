@@ -13,7 +13,7 @@
   "license": "MIT",
   "description": "",
   "dependencies": {
-    "discord.js": "^14.15.2",
+    "discord.js": "^14.15.3",
     "dotenv": "^16.4.5",
     "ws": "^8.17.0"
   },
