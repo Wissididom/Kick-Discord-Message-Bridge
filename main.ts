@@ -7,11 +7,19 @@ import {
   GatewayIntentBits,
   ModalBuilder,
   Partials,
+  TextChannel,
   TextInputBuilder,
   TextInputStyle,
 } from "discord.js";
 
 let exponentialBackoff = 0;
+
+async function doAction(
+  _actionId: string | undefined,
+  _args: { [key: string]: string },
+) {
+  return await new Promise((resolve) => resolve(null));
+}
 
 const client = new Client({
   intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages],
@@ -33,11 +41,11 @@ const keepaliveTimeoutSeconds = {
 const ws = new WebSocket(
   "wss://ws-us2.pusher.com/app/32cbd69e4b950bf97679?protocol=7&client=js&version=7.6.0&flash=false",
 );
-const onopen = (event) => {
+const onopen = (event: any) => {
   console.info(`Pusher connection opened: ${JSON.stringify(event)}`);
   exponentialBackoff = 0;
 };
-const onmessage = async (event) => {
+const onmessage = async (event: any) => {
   const data = JSON.parse(event.data);
   if (data.event == "pusher:connection_established") {
     console.info("Pusher connection established!");
@@ -78,7 +86,8 @@ const onmessage = async (event) => {
     let message = msgEvent.content;
     // Handle Emotes:
     message = message.replace(/\[emote:\d+:(.+)\]/g, "$1");
-    const dcChannel = await client.channels.fetch(Deno.env.get("CHANNEL_ID"));
+    const dcChannel =
+      (await client.channels.fetch(Deno.env.get("CHANNEL_ID")!)) as TextChannel;
     if (dcChannel) {
       if (dcChannel.isTextBased()) {
         // https://discordjs.guide/message-components/buttons.html
@@ -114,7 +123,7 @@ const onmessage = async (event) => {
   keepaliveTimeoutSeconds.end = keepaliveTimeoutSeconds.start +
     keepaliveTimeoutSeconds.interval;
 };
-const onclose = (event) => {
+const onclose = (event: any) => {
   console.info(
     `Pusher connection closed! (Code: ${event.code}; Reason: ${event.reason})`,
   );
@@ -133,7 +142,7 @@ const onclose = (event) => {
     exponentialBackoff *= 2;
   }
 };
-const onerror = (err) => {
+const onerror = (err: any) => {
   console.info(`Pusher connection errored: ${err}`);
 };
 ws.onopen = onopen;
@@ -142,7 +151,7 @@ ws.onclose = onclose;
 ws.onerror = onerror;
 
 client.on(Events.ClientReady, () => {
-  console.log(`Logged in as ${client.user.tag}!`);
+  console.log(`Logged in as ${client.user?.tag}!`);
 });
 
 client.on(Events.InteractionCreate, async (interaction) => {
@@ -163,7 +172,7 @@ client.on(Events.InteractionCreate, async (interaction) => {
         .setTitle("Timeout User")
         .setCustomId("timeoutModal")
         .setComponents(
-          new ActionRowBuilder().setComponents(
+          new ActionRowBuilder<TextInputBuilder>().setComponents(
             new TextInputBuilder()
               .setCustomId("timeoutDuration")
               .setLabel("Timeout Duration in Seconds")
@@ -172,7 +181,7 @@ client.on(Events.InteractionCreate, async (interaction) => {
               .setPlaceholder("Timeout Duration in Seconds")
               .setStyle(TextInputStyle.Short),
           ),
-          new ActionRowBuilder().setComponents(
+          new ActionRowBuilder<TextInputBuilder>().setComponents(
             new TextInputBuilder()
               .setCustomId("timeoutReason")
               .setLabel("Timeout Reason")
@@ -218,7 +227,7 @@ client.on(Events.InteractionCreate, async (interaction) => {
         .setTitle("Ban User")
         .setCustomId("banModal")
         .setComponents(
-          new ActionRowBuilder().setComponents(
+          new ActionRowBuilder<TextInputBuilder>().setComponents(
             new TextInputBuilder()
               .setCustomId("banReason")
               .setLabel("Ban Reason")
