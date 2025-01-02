@@ -3,7 +3,7 @@
     "dev": "deno run --watch main.ts"
   },
   "imports": {
-    "discord.js": "npm:discord.js@^14.17.0"
+    "discord.js": "npm:discord.js@^14.17.2"
   },
   "lint": {
     "rules": {
