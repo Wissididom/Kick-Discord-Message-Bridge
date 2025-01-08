@@ -1,7 +1,7 @@
 {
   "version": "4",
   "specifiers": {
-    "npm:discord.js@^14.17.2": "14.17.2"
+    "npm:discord.js@^14.17.3": "14.17.3"
   },
   "npm": {
     "@discordjs/builders@1.10.0": {
@@ -90,8 +90,8 @@
     "discord-api-types@0.37.115": {
       "integrity": "sha512-ivPnJotSMrXW8HLjFu+0iCVs8zP6KSliMelhr7HgcB2ki1QzpORkb26m71l1pzSnnGfm7gb5n/VtRTtpw8kXFA=="
     },
-    "discord.js@14.17.2": {
-      "integrity": "sha512-mrH6ziLVtNtId4bV4bsaUt5jE6NUaiHMPqO5VsSw1VVhFnjFi9duD8ctlo90/6cUH+8uyKBkoq9mSJ35SuuZ7Q==",
+    "discord.js@14.17.3": {
+      "integrity": "sha512-8/j8udc3CU7dz3Eqch64UaSHoJtUT6IXK4da5ixjbav4NAXJicloWswD/iwn1ImZEMoAV3LscsdO0zhBh6H+0Q==",
       "dependencies": [
         "@discordjs/builders",
         "@discordjs/collection@1.5.3",
@@ -137,7 +137,7 @@
   },
   "workspace": {
     "dependencies": [
-      "npm:discord.js@^14.17.2"
+      "npm:discord.js@^14.17.3"
     ]
   }
 }
