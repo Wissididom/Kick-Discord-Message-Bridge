@@ -50,7 +50,7 @@ jobs:
         name: Checkout Code
 
       # Windows
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v5
         name: Download Windows
         with:
           name: Kick-Discord-Message-Bridge-windows-latest
@@ -59,7 +59,7 @@ jobs:
       - name: Rename Windows Binary
         run: mv release-artifacts/Kick-Discord-Message-Bridge.exe release-artifacts/Kick-Discord-Message-Bridge-Windows.exe
 
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v5
         name: Download Linux
         with:
           name: Kick-Discord-Message-Bridge-ubuntu-latest
@@ -68,7 +68,7 @@ jobs:
       - name: Rename Linux Binary
         run: mv release-artifacts/Kick-Discord-Message-Bridge release-artifacts/Kick-Discord-Message-Bridge-Linux
 
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v5
         name: Download Mac
         with:
           name: Kick-Discord-Message-Bridge-macos-latest
